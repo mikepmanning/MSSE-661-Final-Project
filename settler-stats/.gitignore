@@ -9,6 +9,7 @@ Thumbs.db
 # Logs and temporary files
 *.log
 tmp/
+.env
 
 # Dependency lock files (optional, but can be useful)
 # If you want to ensure consistent dependencies, you can uncomment these:

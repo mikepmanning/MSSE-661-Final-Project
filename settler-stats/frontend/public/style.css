@@ -1,0 +1,65 @@
+/* Basic styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #F7F3E8; /* Catan board color */
+}
+
+header {
+    background-color: #D9B877; /* Catan resource color */
+    color: #333;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0.5rem 0;
+}
+
+nav ul {
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: #fff; /* Section background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+/* Catan-inspired styles */
+h2 {
+    color: #D9B877; /* Catan resource color */
+}
+
+button {
+    background-color: #B57E3A; /* Catan brick color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #96662A;
+}
+
+#about .list-container {
+    /* Adjust the width as needed */
+    width: 50%;  
+    margin: 0 auto; /* Center the div horizontally */
+    text-align: center; /* Align the list items to the left */
+  }

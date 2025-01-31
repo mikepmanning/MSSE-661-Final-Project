@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SettlersStats</title>
-</head>
+    <title>SettlersStats</title>
+    <link rel="stylesheet" href="style.css">  </head>
 <body>
-  <h1>Welcome to SettlersStats!</h1>
-  <p>Under construction...</p>
-  <script src="app.js"></script> 
+    <header>
+        <h1>Welcome to SettlersStats!</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#stats">Statistics</a></li>
+                <li><a href="#profile">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Welcome</h2>
+            <p>Track your Settlers of Catan game statistics and see how you stack up!</p>
+            <button id="register-btn">Register</button>
+            <button id="login-btn">Login</button>
+        </section>
+
+        <section id="about">
+            <h2>About SettlersStats</h2>
+            <p>
+              SettlersStats is a web application designed to help you track and analyze your Settlers of Catan games. 
+              Whether you're a casual player or a seasoned strategist, SettlersStats provides valuable insights into your 
+              gameplay.
+            </p>
+            <p>
+              Here are some of the things you can do with SettlersStats:
+            </p>
+            <div class="list-container">
+                <ul>
+                    <li>Record your game results, including players, scores, and winning strategies.</li>
+                    <li>Track your performance over time and see how you improve.</li>
+                    <li>Analyze your stats to identify your strengths and weaknesses.</li>
+                    <li>Compare your stats with friends and other players.</li>
+                    <li>Discover interesting trends and patterns in your games.</li>
+                </ul>
+            </div>
+            <p>
+              Start tracking your Settlers of Catan journey today with SettlersStats!
+            </p>
+          </section>
+
+        <section id="games">
+            <h2>Games</h2>
+            <p>List of games will be displayed here (using JavaScript and React).</p>
+        </section>
+
+        <section id="stats">
+            <h2>Statistics</h2>
+            <p>Statistics will be displayed here (using JavaScript and React).</p>
+        </section>
+
+        <section id="profile">
+            <h2>Profile</h2>
+            <p>Profile information and settings will be displayed here (using JavaScript and React).</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SettlersStats</p>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
