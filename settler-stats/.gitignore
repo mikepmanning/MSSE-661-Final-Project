@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+
+# Operating system files.DS_Store
+Thumbs.db
+
+# IDE/editor files.idea/.vscode/
+
+# Logs and temporary files
+*.log
+tmp/
+
+# Dependency lock files (optional, but can be useful)
+# If you want to ensure consistent dependencies, you can uncomment these:
+# package-lock.json
+# yarn.lock
