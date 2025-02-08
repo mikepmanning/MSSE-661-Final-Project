@@ -29,9 +29,9 @@ SettlersStats is a web application designed to help you track and analyze your S
 3. **Configure the database and other environment variables**
     Create a .env file in the backend folder and include the following:
 
-    *MONGODB_URI: Your MongoDB connection string.
-    *PORT: The port you want to use for the backend (default: 3001).
-    *SECRET_TOKEN: To generate secret tokens for authentication.
+    * MONGODB_URI: Your MongoDB connection string.
+    * PORT: The port you want to use for the backend (default: 3001).
+    * SECRET_TOKEN: To generate secret tokens for authentication.
 4. ** Run the application **
     Navigate to the backend folder and run the following command:
 
