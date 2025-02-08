@@ -32,7 +32,7 @@ SettlersStats is a web application designed to help you track and analyze your S
     * MONGODB_URI: Your MongoDB connection string.
     * PORT: The port you want to use for the backend (default: 3001).
     * SECRET_TOKEN: To generate secret tokens for authentication.
-4. ** Run the application **
+4. **Run the application**
     Navigate to the backend folder and run the following command:
 
     ```bash
@@ -47,7 +47,7 @@ SettlersStats is a web application designed to help you track and analyze your S
 
 **Usage**
 
-**Register or log in:** Visit the website and register a new account or log in with your existing credentials.
+* **Register or log in:** Visit the website and register a new account or log in with your existing credentials.
 
 **Development**
 
