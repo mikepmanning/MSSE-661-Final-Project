@@ -6,7 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT; 
+const port = process.env.PORT || 3001; 
 const uri = process.env.MONGODB_URI;
 
 
