@@ -27,8 +27,9 @@ const getUserWithoutPassword = (user) => {
 };
 
 exports.createUser = async function (req, res) {
+    console.log("createUser entered");
 
-  //encrypt the password before it's saved to the db.
+  //encrypt the password before it is saved to the db.
   const passwordHash = bcrypt.hashSync(req.body.password);
 
   const newUser = new User({
@@ -42,8 +43,10 @@ exports.createUser = async function (req, res) {
   });
   try {
     const savedUser = (await newUser.save());
-    res.json(getUserWithoutPassword(savedUser));
+    console.log("successful registration?");
+    res.json({success: true, message: "Registration Successful", user: getUserWithoutPassword(savedUser)});
   } catch (err) {
+    console.log("Error: ", err);
     res.send(err);
   }
 };

@@ -61,6 +61,10 @@ button:hover {
     list-style-type: none;
 }
 
+#logout-btn {
+    float: right;
+  }
+
 /* Modal styles */
 .modal {
     display: none;
