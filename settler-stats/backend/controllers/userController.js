@@ -47,7 +47,20 @@ exports.createUser = async function (req, res) {
     res.json({success: true, message: "Registration Successful", user: getUserWithoutPassword(savedUser)});
   } catch (err) {
     console.log("Error: ", err);
-    res.send(err);
+    
+    if (err.code === 11000) {
+        let dupValue = 'Username';
+        if (err.errmsg.includes("email")) {
+            dupValue = 'Email';
+        }
+        res.status(409).json({ error: `${dupValue} already exists` });
+    } else if (err.name === 'ValidationError') {
+        // Mongoose validation error (e.g., invalid email format)
+        res.status(400).json({ error: err.message }); 
+    } else {
+        // Other errors
+        res.status(500).json({ error: 'Registration failed' });
+    }
   }
 };
 

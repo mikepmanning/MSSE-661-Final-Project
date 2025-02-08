@@ -65,6 +65,10 @@ button:hover {
     float: right;
   }
 
+.errorMessage {
+    color: red;
+}
+
 /* Modal styles */
 .modal {
     display: none;

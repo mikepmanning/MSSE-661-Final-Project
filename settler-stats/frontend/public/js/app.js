@@ -6,6 +6,8 @@ const registerModal = document.getElementById('registerModal');
 const closeBtn = document.querySelectorAll('.close-btn');
 const registerForm = document.getElementById('registerForm');
 const welcomeMessage = document.getElementById("welcome-text");
+const loginErrorMessage = document.getElementById("loginErrorMessage");
+const registerErrorMessage = document.getElementById('registrationErrorMessage');
 
 loginBtn.onclick = function() {
   loginModal.style.display = 'block';
@@ -54,6 +56,8 @@ const doLogin = function(e) {
       successfulLogin(data);
   }).catch(error => {
       console.error('Login error:', error);
+      
+      loginErrorMessage.textContent = 'Invalid username or password';
   });
 }
 
@@ -68,8 +72,13 @@ const successfulLogin = function(data) {
 
       welcomeMessage.textContent = `Welcome ${name}!`;
 
-      // No longer display the modal
+      // No longer display the modal and clear the inputs
       loginModal.style.display = 'none';
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+      if (loginErrorMessage.textContent != '') {
+        loginErrorMessage.textContent = '';
+      }
 }
 
 const token = localStorage.getItem('authToken');
@@ -107,6 +116,10 @@ registerBtn.onclick = function() {
 }
 
 
+const genericRegistrationFailure = function() {
+  registerErrorMessage.textContent = 'Registration failed. Please try again later.';
+}
+
 registerForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -132,7 +145,7 @@ registerForm.addEventListener('submit', (event) => {
   register(registrationData)
   .then(response => {
       if (!response.ok) {
-        throw new Error('Registration failed');
+        throw response;
       }
       return response.json();
     })
@@ -146,6 +159,17 @@ registerForm.addEventListener('submit', (event) => {
     })
   .catch(error => {
       console.error('Registration error:', error);
+      error.json().then(errorData => {
+        if (errorData && errorData.error) {
+          registerErrorMessage.textContent = errorData.error;
+        } else {
+          genericRegistrationFailure();
+        }
+      }).catch(() => {
+        // Fallback to a generic error message if parsing fails
+        genericRegistrationFailure();
+      });
     });
 });
+
 
