@@ -18,7 +18,7 @@
 
     <main>
         <section id="home">
-            <h2>Welcome</h2>
+            <h2 id="welcome-text">Welcome</h2>
             <p>Track your Settlers of Catan game statistics and see how you stack up!</p>
             <button id="register-btn">Register</button>
             <button id="login-btn">Login</button>
@@ -34,15 +34,13 @@
             <p>
               Here are some of the things you can do with SettlersStats:
             </p>
-            <div class="list-container">
-                <ul>
-                    <li>Record your game results, including players, scores, and winning strategies.</li>
-                    <li>Track your performance over time and see how you improve.</li>
-                    <li>Analyze your stats to identify your strengths and weaknesses.</li>
-                    <li>Compare your stats with friends and other players.</li>
-                    <li>Discover interesting trends and patterns in your games.</li>
-                </ul>
-            </div>
+            <ul>
+                <li>Record your game results, including players, scores, and winning strategies.</li>
+                <li>Track your performance over time and see how you improve.</li>
+                <li>Analyze your stats to identify your strengths and weaknesses.</li>
+                <li>Compare your stats with friends and other players.</li>
+                <li>Discover interesting trends and patterns in your games.</li>
+            </ul>
             <p>
               Start tracking your Settlers of Catan journey today with SettlersStats!
             </p>
@@ -68,6 +66,26 @@
         <p>&copy; 2024 SettlersStats</p>
     </footer>
 
-    <script src="app.js"></script>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <h2>Login</h2>
+          <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+      
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+      
+            <button onclick="doLogin(event)">Login</button>
+          </form>
+        </div>
+      </div>
+
+    
+    <script src="./js/authService.js"></script>
+    <script src="./js/serviceHelpers.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>
