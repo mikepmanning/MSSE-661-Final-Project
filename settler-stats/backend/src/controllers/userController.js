@@ -14,10 +14,15 @@ export const getAllUsers = async function (req, res) {
 
 export const getUser = async function (req, res) {
   try {
-    const User = await User.findById(req.params.UserId);
-    res.json(getUserWithoutPassword(User));
+    const user = await User.findById(req.params.userId); 
+    if (user) {
+      res.status(200).json(getUserWithoutPassword(user));
+    } else {
+      res.status(404).json({ error: 'User not found' }); 
+    }
   } catch (err) {
-    res.send(err);
+    console.error("Error fetching user:", err);
+    res.status(500).json({ error: 'Failed to fetch user' }); 
   }
 };
 
@@ -44,7 +49,7 @@ export const createUser = async function (req, res) {
   try {
     const savedUser = (await newUser.save());
     console.log("successful registration?");
-    res.json({success: true, message: "Registration Successful", user: getUserWithoutPassword(savedUser)});
+    res.status(201).json({success: true, message: "Registration Successful", user: getUserWithoutPassword(savedUser)});
   } catch (err) {
     console.log("Error: ", err);
     
@@ -84,8 +89,8 @@ export const updateUser = async function (req, res) {
 
 export const deleteUser = async function (req, res) {
   try {
-    await User.deleteOne({ _id: req.params.UserId });
-    res.json({ msg: 'Deleted successfully.' });
+    await User.deleteOne({ _id: req.params.userId });
+    res.status(200).json({ msg: 'Deleted successfully.' });
   } catch (err) {
     res.send(err);
   }

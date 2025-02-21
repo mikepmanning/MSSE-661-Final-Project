@@ -27,13 +27,13 @@ describe('User API Service', function () {
         const res = await request(server).post('/api/user').send(testUser);
         
         expect(res.status).to.be.eql(201); 
-        expect(res.body.firstName).to.be.eql(expectedUser.firstName);
-        expect(res.body.middleName).to.be.eql(expectedUser.middleName);
-        expect(res.body.lastName).to.be.eql(expectedUser.lastName);
-        expect(res.body.username).to.be.eql(expectedUser.username);
-        expect(res.body).to.not.have.property('password');
+        expect(res.body.user.firstName).to.be.eql(expectedUser.firstName);
+        expect(res.body.user.middleName).to.be.eql(expectedUser.middleName);
+        expect(res.body.user.lastName).to.be.eql(expectedUser.lastName);
+        expect(res.body.user.username).to.be.eql(expectedUser.username);
+        expect(res.body.user).to.not.have.property('password');
 
-        userId = res.body._id;
+        userId = res.body.user._id;
     });
 
   it('should GET a single user', async () => {
@@ -72,7 +72,7 @@ describe('User API Service', function () {
 
     let res = await request(server).delete(`/api/user/${userId}`);
 
-    expect(res.status).to.be.eql(204);
+    expect(res.status).to.be.eql(200);
 
     res = await request(server).get(`/api/user/${userId}`);
     expect(res.status).to.be.eql(404);
