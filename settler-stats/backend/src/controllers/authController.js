@@ -1,11 +1,10 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const User = require('../model/user');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import User from '../model/user.js';
+import jwtconfig from '../config/jwt-config.js';
 
-const jwtconfig = require('../config/jwt-config');
 
-
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
     console.log("Entering login method");
     try {
 

@@ -1,9 +1,9 @@
-const User = require('../model/user');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const jwtconfig = require('../config/jwt-config');
+import User from '../model/user.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import jwtconfig from '../config/jwt-config.js';
 
-exports.getAllUsers = async function (req, res) {
+export const getAllUsers = async function (req, res) {
   try {
     const Users = await User.find({});
     res.json(Users);
@@ -12,7 +12,7 @@ exports.getAllUsers = async function (req, res) {
   }
 };
 
-exports.getUser = async function (req, res) {
+export const getUser = async function (req, res) {
   try {
     const User = await User.findById(req.params.UserId);
     res.json(getUserWithoutPassword(User));
@@ -26,7 +26,7 @@ const getUserWithoutPassword = (user) => {
   return userWithoutPassword;
 };
 
-exports.createUser = async function (req, res) {
+export const createUser = async function (req, res) {
     console.log("createUser entered");
 
   //encrypt the password before it is saved to the db.
@@ -64,7 +64,7 @@ exports.createUser = async function (req, res) {
   }
 };
 
-exports.updateUser = async function (req, res) {
+export const updateUser = async function (req, res) {
   try {
     if (req.body.password) {
       const passwordHash = bcrypt.hashSync(req.body.password);
@@ -82,7 +82,7 @@ exports.updateUser = async function (req, res) {
   }
 };
 
-exports.deleteUser = async function (req, res) {
+export const deleteUser = async function (req, res) {
   try {
     await User.deleteOne({ _id: req.params.UserId });
     res.json({ msg: 'Deleted successfully.' });
@@ -102,7 +102,7 @@ const verifyJWT = (token, secret) => {
     });
   };
 
-exports.getUserByToken = async function(req, res) {
+export const getUserByToken = async function(req, res) {
     const token = req.headers['auth-token'];
     if (!token) {
         res.status(401).send({success: 'false', message: 'No token provided'});

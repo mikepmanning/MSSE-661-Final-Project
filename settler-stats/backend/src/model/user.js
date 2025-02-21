@@ -1,5 +1,5 @@
 // Require Mongoose
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Define a schema
 const Schema = mongoose.Schema;
@@ -43,4 +43,4 @@ const UserSchema = new Schema({
 });
 
 // Expose the collections functions for use in our controller
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);
