@@ -13,3 +13,7 @@ function login(formData) {
 function getUserByToken(header) {
     return _get(`${USER_API}/me`, header);
 }
+
+function updateUser(formData) {
+    _put(`${USER_API}/${formData.id}`, formData);
+}

@@ -1,3 +1,8 @@
+const AUTH_TOKEN = 'authToken';
+
+const token = localStorage.getItem(AUTH_TOKEN) || '';
+
+
 function _get(url, header) {
     return fetch(url, {
         method: 'GET',

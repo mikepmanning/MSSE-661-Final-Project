@@ -19,7 +19,8 @@ const UserSchema = new Schema({
   },
   birthdate: {
     type: Date,
-    required: 'User requires a birthdate'
+    required: 'User requires a birthdate',
+    transform: (v) => v.setUTCHours(0,0,0,0)
   },
   username: {
     type: String,

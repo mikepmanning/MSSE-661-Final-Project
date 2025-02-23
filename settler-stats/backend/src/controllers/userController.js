@@ -26,7 +26,7 @@ export const getUser = async function (req, res) {
   }
 };
 
-const getUserWithoutPassword = (user) => {
+export const getUserWithoutPassword = (user) => {
   const { password,...userWithoutPassword } = user.toObject();
   return userWithoutPassword;
 };

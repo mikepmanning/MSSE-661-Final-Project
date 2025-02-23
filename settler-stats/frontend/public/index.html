@@ -58,8 +58,13 @@
         </section>
 
         <section id="profile">
-            <h2>Profile</h2>
-            <p>Profile information and settings will be displayed here (using JavaScript and React).</p>
+            <h2>Profile</h2>  
+            <p>First Name: <span id="profile-firstName"></span></p>
+            <p>Middle Name: <span id="profile-middleName"></span></p>
+            <p>Last Name: <span id="profile-lastName"></span></p>
+            <p>Birthdate: <span id="profile-birthdate"></span></p>
+            <p>Email: <span id="profile-email"></span></p>
+            <button id="update-profile-btn" style="display: none;">Update Profile</button>
         </section>
     </main>
 
@@ -115,6 +120,40 @@
             <button type="submit">Register</button>
           </form>
         </div>
+    </div>
+
+    <div id="updateProfileModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="hideUpdateModal">&times;</span>
+        <h2>Update Profile</h2>
+        <form id="updateProfileForm">
+          
+          <input type="hidden" id="update-id" name="id" required>
+
+          <label for="update-firstName">First Name:</label>
+          <input type="text" id="update-firstName" name="firstName" required><br><br>
+    
+          <label for="update-middleName">Middle Name:</label>
+          <input type="text" id="update-middleName" name="middleName"><br><br>
+    
+          <label for="update-lastName">Last Name:</label>
+          <input type="text" id="update-lastName" name="lastName" required><br><br>
+    
+          <label for="update-birthdate">Birthdate:</label>
+          <input type="date" id="update-birthdate" name="birthdate" required><br><br>
+    
+          <label for="update-username">Username:</label>
+          <input type="text" id="update-username" name="username" required><br><br>
+    
+          <label for="update-old-password">Old Password:</label>
+          <input type="password" id="update-old-password" name="old-password"><br><br>
+          
+          <label for="update-new-password">New Password:</label>
+          <input type="password" id="update-new-password" name="new-password"><br><br>
+    
+          <button type="submit" onclick="updateUser">Update</button>
+        </form>
+      </div>
     </div>
 
     <script src="./js/authService.js"></script>

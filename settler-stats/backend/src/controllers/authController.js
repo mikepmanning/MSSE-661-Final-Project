@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import User from '../model/user.js';
 import jwtconfig from '../config/jwt-config.js';
+import { getUserWithoutPassword } from './userController.js';
 
 
 export const login = async (req, res) => {
@@ -40,8 +41,7 @@ export const login = async (req, res) => {
       res.status(200);
       res.json({ success: true, 
         message: 'Login Successful',
-        firstName: user.firstName,
-        lastName: user.lastName
+        user: getUserWithoutPassword(user),
         });
       return res;
     } catch (error) {
