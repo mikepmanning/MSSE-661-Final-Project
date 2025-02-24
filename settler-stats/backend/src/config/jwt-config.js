@@ -11,4 +11,4 @@ const config = {
     secret: process.env.SECRET_TOKEN
 };
 
-export default config; // Use export default for ES modules
+export default config;

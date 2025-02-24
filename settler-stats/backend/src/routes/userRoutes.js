@@ -1,4 +1,5 @@
 import {getAllUsers, createUser, getUserByToken, getUser, updateUser, deleteUser} from '../controllers/userController.js';
+import verifyToken from '../middleware/verifyToken.js';
 import express from 'express';
 
 const userRoutes = express.Router();
@@ -19,7 +20,7 @@ userRoutes.get('/', getAllUsers).post('/', createUser);
 userRoutes
   .get('/me', getUserByToken)
   .get('/:userId', getUser)
-  .post('/:userId', updateUser)
+  .put('/:userId', verifyToken, updateUser)
   .delete('/:userId', deleteUser);
 
  export default userRoutes;

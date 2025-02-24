@@ -35,6 +35,11 @@ window.onclick = function(event) {
   }
 }
 
+hideUpdateModal = function(event) {
+  event.preventDefault();
+  updateProfileModal.style.display = 'none';
+}
+
 const doLogin = function(e) {
   e.preventDefault();
   const username = document.getElementById('username').value;
@@ -87,7 +92,6 @@ const successfulLogin = function(data) {
   }
 
   populateProfile(data.user);
-  populateUpdateModal(data.user);
 }
 
 if (token) {
@@ -199,6 +203,8 @@ function populateProfile(userData) {
   // Show the profile section and update button
   document.getElementById('profile').style.display = 'block';
   document.getElementById('update-profile-btn').style.display = 'block';
+
+  populateUpdateModal(userData);
 }
 
 function clearProfile() {
@@ -217,6 +223,7 @@ function clearProfile() {
   document.getElementById('update-lastName').value = "";
   document.getElementById('update-birthdate').value = "";
   document.getElementById('update-username').value = "";
+  document.getElementById('update-email').value = "";
 
 }
 
@@ -226,6 +233,7 @@ function populateUpdateModal(userData) {
   document.getElementById('update-middleName').value = userData.middleName;
   document.getElementById('update-lastName').value = userData.lastName;
   document.getElementById('update-username').value = userData.username;
+  document.getElementById('update-email').value = userData.email;
   const birthdate = new Date(userData.birthdate);
   const year = birthdate.getUTCFullYear();
   const month = ('0' + (birthdate.getUTCMonth() + 1)).slice(-2); // Add leading zero if needed
@@ -241,6 +249,66 @@ updateProfileBtn.addEventListener('click', () => {
   const updateProfileModal = document.getElementById('updateProfileModal');
   updateProfileModal.style.display = 'block';
 });
+
+doUpdateUser = function(event) {
+  event.preventDefault();
+  const oldPassword = document.getElementById('update-old-password').value;
+
+  if (oldPassword === '') {
+    const updateErrorMessage = document.getElementById('updateErrorMessage');
+    updateErrorMessage.textContent = 'Old password is required';
+    return;
+  }
+
+  user = {
+    id: document.getElementById('update-id').value,
+    firstName: document.getElementById('update-firstName').value,
+    middleName: document.getElementById('update-middleName').value,
+    lastName: document.getElementById('update-lastName').value,
+    email: document.getElementById('update-email').value,
+    birthdate: document.getElementById('update-birthdate').value,
+    oldPassword: oldPassword,
+    newPassword: document.getElementById('update-new-password').value
+  }
+
+  updateUser(user)
+  .then(response => {
+    if (!response.ok) {
+      throw response;
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Update successful:', data);
+    if (data.success) {
+      alert("Updated User Successfully")
+    }
+
+    populateProfile(data.user);
+
+    updateProfileModal.style.display = 'none';
+  })
+  .catch(error => {
+    console.error('Registration error:', error);
+    error.json().then(errorData => {
+      if (errorData && errorData.error) {
+        updateErrorMessage.textContent = errorData.error;
+      } else {
+        genericUpdateFailure();
+      }
+    }).catch(() => {
+      // Fallback to a generic error message if parsing fails
+      genericUpdateFailure();
+    });
+  });
+
+}
+
+const genericUpdateFailure = function() {
+  updateErrorMessage.textContent = 'Update User failed. Please try again later.';
+}
+
+
 
 
 

@@ -70,18 +70,40 @@ export const createUser = async function (req, res) {
 };
 
 export const updateUser = async function (req, res) {
+  console.log("Entering updateUser method");
   try {
-    if (req.body.password) {
-      const passwordHash = bcrypt.hashSync(req.body.password);
-      req.body.password = passwordHash;
+    const user = await User.findById(req.body.id);
+    if (!user) {
+      return res.status(404).json({error: "User not found"});
+    }
+    
+    console.log("found user");
+    console.log(req.body);
+
+    if (req.body.oldPassword) {
+      const passwordMatch = await bcrypt.compare(req.body.oldPassword, user.password);
+      if (!passwordMatch) {
+        return res.status(401).json({error: 'Invalid old password'});
+      }
+    }
+
+    if (req.body.newPassword) {
+      const passwordHash = bcrypt.hashSync(req.body.newPassword);
+      req.body.password = passwordHash; //switching to password so we can update correctly after encoding the new password
     }
 
     const updatedUser = await User.findOneAndUpdate(
-      { _id: req.params.UserId },
+      { _id: req.body.id },
       req.body,
       { new: true }
     );
-    res.json(getUserWithoutPassword(updatedUser));
+
+    const resBody = {
+      success: true,
+      message: "Update Successful",
+      user: getUserWithoutPassword(updatedUser),
+    }
+    res.json(resBody);
   } catch (err) {
     res.send(err);
   }

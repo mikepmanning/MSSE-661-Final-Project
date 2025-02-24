@@ -15,5 +15,5 @@ function getUserByToken(header) {
 }
 
 function updateUser(formData) {
-    _put(`${USER_API}/${formData.id}`, formData);
+    return _put(`${USER_API}/${formData.id}`, formData);
 }

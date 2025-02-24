@@ -141,6 +141,9 @@
     
           <label for="update-birthdate">Birthdate:</label>
           <input type="date" id="update-birthdate" name="birthdate" required><br><br>
+
+          <label for="update-email">Email:</label>
+          <input type="email" id="update-email" name="email" required><br><br>
     
           <label for="update-username">Username:</label>
           <input type="text" id="update-username" name="username" required><br><br>
@@ -151,7 +154,10 @@
           <label for="update-new-password">New Password:</label>
           <input type="password" id="update-new-password" name="new-password"><br><br>
     
-          <button type="submit" onclick="updateUser">Update</button>
+          <p id="updateErrorMessage" class="errorMessage"></p>
+
+          <button type="submit" onclick="doUpdateUser(event)">Update</button>
+          <button onclick="hideUpdateModal(event)">Cancel</button>
         </form>
       </div>
     </div>
