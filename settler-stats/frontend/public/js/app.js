@@ -96,7 +96,7 @@ const successfulLogin = function(data) {
 
 if (token) {
     
-  getUserByToken({ 'auth-token': `${token}`})
+  getUserByToken({ Authorization: `Bearer ${token}`})
   .then(response => {
         if (!response.ok) {
             throw new Error('Failed to get user information');

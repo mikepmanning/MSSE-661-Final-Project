@@ -19,6 +19,7 @@ const verifyToken = (req, res, next) => {
     req.user = verified;
     next();
   } catch (err) {
+    console.log("Failed to validate token: ", token);
     return res.status(400).send({ success: false, message: 'Invalid Authentication Token' });
   }
 };

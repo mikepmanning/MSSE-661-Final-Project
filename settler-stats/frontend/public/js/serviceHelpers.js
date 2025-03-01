@@ -1,4 +1,4 @@
-const AUTH_TOKEN = 'authToken';
+const AUTH_TOKEN = 'access_token';
 
 const token = localStorage.getItem(AUTH_TOKEN) || '';
 

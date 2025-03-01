@@ -18,7 +18,7 @@ userRoutes.get('/', getAllUsers).post('/', createUser);
  * Routes for a user by id. Evalutes to `/user/:userId`.
  */
 userRoutes
-  .get('/me', getUserByToken)
+  .get('/me', verifyToken, getUserByToken)
   .get('/:userId', getUser)
   .put('/:userId', verifyToken, updateUser)
   .delete('/:userId', deleteUser);

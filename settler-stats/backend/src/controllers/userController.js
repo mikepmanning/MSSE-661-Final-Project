@@ -76,9 +76,7 @@ export const updateUser = async function (req, res) {
     if (!user) {
       return res.status(404).json({error: "User not found"});
     }
-    
-    console.log("found user");
-    console.log(req.body);
+  
 
     if (req.body.oldPassword) {
       const passwordMatch = await bcrypt.compare(req.body.oldPassword, user.password);
@@ -130,20 +128,16 @@ const verifyJWT = (token, secret) => {
   };
 
 export const getUserByToken = async function(req, res) {
-    const token = req.headers['auth-token'];
-    if (!token) {
-        res.status(401).send({success: 'false', message: 'No token provided'});
+  try {
+    const user = await User.findById(req.user.userId);
+    if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
     }
-    
-    try {
-        const decoded = await verifyJWT(token, jwtconfig.secret);
-
-        const user = await User.findById(decoded.userId);
-        if (!user) {
-            return res.status(404).json({ success: false, message: 'User not found' });
-        }
-        res.json(getUserWithoutPassword(user));
-    } catch (err) {
-        res.status(403).json({ success: false, message: 'Failed to authenticate token' });
-    }
+    res.json({ success: true, 
+      message: 'Login Successful',
+      user: getUserWithoutPassword(user),
+      });
+  } catch (err) {
+      res.status(403).json({ success: false, message: 'Failed to authenticate token' });
+  }
 }
