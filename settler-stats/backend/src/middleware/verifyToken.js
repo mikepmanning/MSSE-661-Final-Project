@@ -3,6 +3,10 @@ import jwtconfig from '../config/jwt-config.js';
 
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
+  if (authHeader == undefined) {
+    console.log("token undefined");
+    return res.status(400).send({ success: false, message: 'Invalid Authentication Token' });
+  }
   
   const token = authHeader.split(' ')[1]; 
 

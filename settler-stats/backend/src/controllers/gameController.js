@@ -1,9 +1,11 @@
 import Game from '../model/game.js';
 
 export const createGame = async function(req, res) {
+    console.log("Entering createGame");
     try {
         const newGame = new Game(req.body);
-        const savedGame = (await newGame.save()).populate({
+        const savedGame = await newGame.save()
+        await savedGame.populate({
             path: 'users',
             select: '-password',
         });
