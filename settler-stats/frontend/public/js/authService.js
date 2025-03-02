@@ -3,15 +3,15 @@ const AUTH_API = `${BASE_API_URL}/auth`;
 const USER_API = `${BASE_API_URL}/user`;
 
 function register(formData) {
-    return _post(`${AUTH_API}/register`, formData);
+    return _post(`${AUTH_API}/register`, formData, true);
 }
 
 function login(formData) {
-    return _post(`${AUTH_API}/login`, formData);
+    return _post(`${AUTH_API}/login`, formData, true);
 }
 
-function getUserByToken(header) {
-    return _get(`${USER_API}/me`, header);
+function getUserByToken() {
+    return _get(`${USER_API}/me`, false);
 }
 
 function updateUser(formData) {

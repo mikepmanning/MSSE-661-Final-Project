@@ -10,7 +10,8 @@ const GameSchema = new Schema({
   }],
   started_date: {
     type: Date,
-    default: Date.now 
+    default: Date.now,
+    transform: (v) => v.setUTCHours(0,0,0,0)
   }
 });
 

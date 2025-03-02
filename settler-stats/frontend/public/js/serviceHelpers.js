@@ -2,26 +2,45 @@ const AUTH_TOKEN = 'access_token';
 
 const token = localStorage.getItem(AUTH_TOKEN) || '';
 
+const _buildHeader = (noToken) => {
+    const h = {
+        'Content-Type': 'application/json'
+    };
 
-function _get(url, header) {
-    return fetch(url, {
-        method: 'GET',
-        headers: header
-    })
+    if (token !== '' && !noToken) {
+        h['Authorization'] = `Bearer ${token}`;
+    }
+
+    return h;
 }
 
-function _post(url, data) {
-    return fetch(url, {
+const _get = async(url, noToken) => {
+    
+    const h = _buildHeader(noToken);
+
+    const res = fetch(url, {
+        method: 'GET',
+        headers: h
+    })
+
+    return res;
+}
+
+
+const _post = async(url, data, noToken) => {
+    const h = _buildHeader(noToken);
+
+    const res = await fetch(url, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: h,
         body: JSON.stringify(data)
     });
+
+    return res;
 }
 
-function _put(url, data) {
-    return fetch(url, {
+const _put = async(url, data) => {
+    const res = await fetch(url, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -29,5 +48,19 @@ function _put(url, data) {
         },
         body: JSON.stringify(data)
     });
+
+    return res;
+}
+
+const _delete = async(url) => {
+    const res = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+
+    return res;
 }
 

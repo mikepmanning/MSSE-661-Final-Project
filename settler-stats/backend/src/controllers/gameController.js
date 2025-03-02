@@ -30,6 +30,20 @@ export const getAllGamesByUser = async function(req, res) {
     }
 }
 
+export const getGamesByCurrentUser = async function(req, res) {
+    try {
+        const userId = req.user.userId; 
+        const games = await Game.find({ users: userId }).populate({
+            path: 'users',
+            select: '-password',
+        }); 
+        res.status(200).json(games);
+    } catch (err) {
+        console.error("Error fetching games by user:", err);
+        res.status(500).json({ error: 'Failed to fetch games by user' });
+    }
+}
+
 export const getAllGames = async function(req, res) {
     try {
         const games = await Game.find({}).populate({

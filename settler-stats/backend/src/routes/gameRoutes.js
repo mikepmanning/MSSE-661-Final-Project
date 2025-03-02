@@ -1,4 +1,4 @@
-import {getAllGamesByUser, createGame, getGame, updateGame, deleteGame, getAllGames} from '../controllers/gameController.js';
+import {getAllGamesByUser, getGamesByCurrentUser, createGame, getGame, updateGame, deleteGame, getAllGames} from '../controllers/gameController.js';
 import verifyToken from '../middleware/verifyToken.js';
 import express from 'express';
 
@@ -19,6 +19,7 @@ gameRoutes.get('/', verifyToken, getAllGames)
  * Routes for a game by id. Evalutes to `/game/:gameId`.
  */
 gameRoutes
+  .get('/user/me', verifyToken, getGamesByCurrentUser)
   .get('/user/:userId', verifyToken, getAllGamesByUser)
   .get('/:gameId', verifyToken, getGame)
   .put('/:gameId', verifyToken, updateGame)

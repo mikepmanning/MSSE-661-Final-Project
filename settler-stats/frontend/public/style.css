@@ -98,3 +98,36 @@ button:hover {
     text-decoration: none;
     cursor: pointer;
   }
+
+  /* Table styling */
+#games table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  #games th, #games td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  #games th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  
+  #games tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* List styling within table cells */
+  #games ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #games li {
+    margin-bottom: 5px;
+  }

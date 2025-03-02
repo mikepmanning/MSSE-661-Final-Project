@@ -20,6 +20,7 @@ closeBtn.forEach(button => {
     loginModal.style.display = 'none';
     registerModal.style.display = 'none';
     updateProfileModal.style.display = 'none';
+    createGameModal.style.display = 'none';
   }
 });
 
@@ -32,6 +33,9 @@ window.onclick = function(event) {
   }
   else if (event.target == updateProfileModal) {
     updateProfileModal.style.display = 'none';
+  }
+  else if (event.target == createGameModal) {
+    createGameModal.style.display = 'none';
   }
 }
 
@@ -91,12 +95,13 @@ const successfulLogin = function(data) {
     loginErrorMessage.textContent = '';
   }
 
+  gameManager.initialize();
   populateProfile(data.user);
 }
 
 if (token) {
     
-  getUserByToken({ Authorization: `Bearer ${token}`})
+  getUserByToken()
   .then(response => {
         if (!response.ok) {
             throw new Error('Failed to get user information');
