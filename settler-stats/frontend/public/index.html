@@ -9,9 +9,9 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li id="game-link"><a href="#games">Games</a></li>
+                <li id="game-link" style="visibility: hidden;"><a href="#games">Games</a></li>
                 <!-- <li><a href="#stats">Statistics</a></li> -->
-                <li id="profile-link"><a href="#profile">Profile</a></li>
+                <li id="profile-link" style="visibility: hidden;"><a href="#profile">Profile</a></li>
                 <li><button id="logout-btn" style="visibility: hidden;">Logout</button></li>
             </ul>
         </nav>
@@ -47,12 +47,12 @@
             </p>
           </section>
 
-        <section id="games">
+        <section id="games" style="display: none;">
             <h2>Games</h2>
             <div id="game-div">List of games will be displayed here (using JavaScript and React).</div>
         </section>
 
-        <section id="profile">
+        <section id="profile" style="display: none;">
             <h2>Profile</h2>  
             <p>First Name: <span id="profile-firstName"></span></p>
             <p>Middle Name: <span id="profile-middleName"></span></p>

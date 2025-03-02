@@ -1,6 +1,7 @@
 
 const createGameModal = document.getElementById('createGameModal');
 const newGameButton = document.getElementById('createGame');
+const gamesSection = document.getElementById('games');
 
 class GameManager {
     constructor(gameService, userService, gameSectionId) {
@@ -66,6 +67,7 @@ class GameManager {
             const message = document.createElement('p');
             message.textContent = 'No games found.';
             this.gameSection.appendChild(message);
+            gamesSection.style.display = 'block';
             return;
         }
     
@@ -105,6 +107,7 @@ class GameManager {
         });
     
         this.gameSection.appendChild(table);
+        gamesSection.style.display = 'block';
     }
 
     async initialize() {

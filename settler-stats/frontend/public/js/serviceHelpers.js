@@ -1,12 +1,13 @@
 const AUTH_TOKEN = 'access_token';
 
-const token = localStorage.getItem(AUTH_TOKEN) || '';
+let token = localStorage.getItem(AUTH_TOKEN) || '';
 
 const _buildHeader = (noToken) => {
     const h = {
         'Content-Type': 'application/json'
     };
 
+    console.log("token: ", token);
     if (token !== '' && !noToken) {
         h['Authorization'] = `Bearer ${token}`;
     }

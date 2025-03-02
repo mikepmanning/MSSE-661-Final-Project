@@ -9,6 +9,9 @@ const welcomeMessage = document.getElementById("welcome-text");
 const loginErrorMessage = document.getElementById("loginErrorMessage");
 const registerErrorMessage = document.getElementById('registrationErrorMessage');
 const updateProfileModal = document.getElementById('updateProfileModal');
+const profileLink = document.getElementById("profile-link");
+const gameLink = document.getElementById("game-link");
+const aboutSection = document.getElementById("about");
 
 
 loginBtn.onclick = function() {
@@ -62,6 +65,7 @@ const doLogin = function(e) {
       if (loginToken) {
           // Store the token in localStorage
           localStorage.setItem(AUTH_TOKEN, loginToken);
+          token = loginToken;
       } else {
           console.error('Token not found in response header');
       }
@@ -85,6 +89,11 @@ const successfulLogin = function(data) {
   loginBtn.style.visibility = 'hidden';
   logoutBtn.style.visibility = 'visible';
 
+  profileLink.style.visibility = 'visible';
+  gameLink.style.visibility = 'visible';
+
+  aboutSection.style.display = 'none';
+
   welcomeMessage.textContent = `Welcome ${name}!`;
 
   // No longer display the modal and clear the inputs
@@ -100,7 +109,7 @@ const successfulLogin = function(data) {
 }
 
 if (token) {
-    
+  console.log("Checking for valid token");
   getUserByToken()
   .then(response => {
         if (!response.ok) {
@@ -113,16 +122,20 @@ if (token) {
     })
   .catch(error => {
         console.error('Error getting user information:', error);
-        localStorage.removeItem('authToken');
+        localStorage.removeItem(AUTH_TOKEN);
     });
 }
 
 logoutBtn.addEventListener('click', () => {
-  localStorage.removeItem('authToken');
+  localStorage.removeItem(AUTH_TOKEN);
 
   registerBtn.style.visibility = 'visible';
   loginBtn.style.visibility = 'visible';
   logoutBtn.style.visibility = 'hidden';
+  gameLink.style.visibility = 'hidden';
+  profileLink.style.visibility = 'hidden';
+  aboutSection.style.display = 'block';
+  gamesSection.style.display = 'none';
   if (welcomeMessage) {
     welcomeMessage.textContent = 'Welcome';
   }
