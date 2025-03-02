@@ -144,7 +144,7 @@ class GameManager {
                 users: selectedUserIds
             };
     
-            const response = await this.gameService.createGame(gameData);
+            const response = await _createGame(gameData);
             if (response.ok) {
                 this.initialize();
                 createGameModal.style.display = 'none';
@@ -156,9 +156,11 @@ class GameManager {
             console.error('Error creating game:', error);
             alert("Error creating game, please try again later.");
         }
+    }
 
-
-
+    async _createGame(gameData) {
+        const response = await this.gameService.createGame(gameData);
+        return response;
     }
 
     async deleteGame(gameId) {
